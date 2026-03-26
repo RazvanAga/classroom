@@ -44,7 +44,7 @@ export default function Nav() {
                   }`}
                 >
                   <Icon size={17} />
-                  {label}
+                  <span className="hidden sm:inline">{label}</span>
                 </Link>
               )
             })}

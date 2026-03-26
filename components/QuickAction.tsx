@@ -82,7 +82,7 @@ export default function QuickAction({ student, onClose }: Props) {
             <p className="text-emerald-700 font-bold text-sm mb-2.5 flex items-center gap-1.5">
               <span className="text-base">⭐</span> Acordă stele
             </p>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {QUICK_VALUES.map((v) => (
                 <button
                   key={v}
@@ -102,7 +102,7 @@ export default function QuickAction({ student, onClose }: Props) {
             <p className="text-rose-700 font-bold text-sm mb-2.5 flex items-center gap-1.5">
               <span className="text-base">💢</span> Scade stele
             </p>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {QUICK_VALUES.map((v) => (
                 <button
                   key={v}

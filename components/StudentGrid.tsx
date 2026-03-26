@@ -32,7 +32,7 @@ export default function StudentGrid({ students }: Props) {
 
   return (
     <>
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
         {students.map((s) => {
           const pts = s.shopBalance
           const isPositive = pts > 0
