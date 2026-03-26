@@ -11,8 +11,8 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-gradient-to-br from-violet-600 to-indigo-500 rounded-3xl p-6 text-white shadow-xl shadow-purple-900/20">
-        <div className="flex items-center gap-3 mb-1">
+      <div className="bg-gradient-to-br from-violet-600 to-indigo-500 rounded-3xl p-6 text-white shadow-xl shadow-purple-900/20 text-center">
+        <div className="flex items-center justify-center gap-3 mb-1">
           <Star size={28} className="fill-yellow-300 text-yellow-300" />
           <h1 className="text-3xl font-extrabold tracking-tight">Clasa Steluțelor</h1>
           <Star size={28} className="fill-yellow-300 text-yellow-300" />
@@ -20,7 +20,7 @@ export default async function DashboardPage() {
         <p className="text-purple-100 text-sm mt-1">
           Apasă pe un elev pentru a-i acorda sau scădea stele ✦
         </p>
-        <div className="mt-3 flex gap-4 text-sm font-semibold">
+        <div className="mt-3 flex justify-center gap-4 text-sm font-semibold">
           <span className="bg-white/20 rounded-xl px-3 py-1">
             👧 {allTime.length} elevi
           </span>
