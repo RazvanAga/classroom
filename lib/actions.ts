@@ -10,7 +10,7 @@ export async function addEvent(
   points: number,
   note?: string
 ) {
-  const db = readDb()
+  const db = await readDb()
   db.events.push({
     id: uuidv4(),
     studentId,
@@ -18,19 +18,19 @@ export async function addEvent(
     timestamp: new Date().toISOString(),
     note,
   })
-  writeDb(db)
+  await writeDb(db)
   revalidatePath("/")
   revalidatePath(`/elevi/${studentId}`)
   revalidatePath("/shop")
 }
 
 export async function undoLastEvent(studentId: string) {
-  const db = readDb()
+  const db = await readDb()
   const idx = [...db.events].reverse().findIndex((e) => e.studentId === studentId)
   if (idx !== -1) {
     const realIdx = db.events.length - 1 - idx
     db.events.splice(realIdx, 1)
-    writeDb(db)
+    await writeDb(db)
   }
   revalidatePath("/")
   revalidatePath(`/elevi/${studentId}`)
@@ -44,7 +44,7 @@ export async function purchaseItem(
   const item = SHOP_ITEMS.find((i) => i.id === itemId)
   if (!item) return { ok: false, message: "Articol inexistent." }
 
-  const db = readDb()
+  const db = await readDb()
   const student = db.students.find((s) => s.id === studentId)
   if (!student) return { ok: false, message: "Elev inexistent." }
 
@@ -70,7 +70,7 @@ export async function purchaseItem(
   if (item.type === "accessory")  student.avatar.accessory = item.value
   if (item.type === "bgStyle")    student.avatar.bgStyle = item.value
 
-  writeDb(db)
+  await writeDb(db)
   revalidatePath("/")
   revalidatePath(`/elevi/${studentId}`)
   revalidatePath("/shop")
@@ -82,7 +82,7 @@ export async function equipItem(studentId: string, itemId: string) {
   const item = SHOP_ITEMS.find((i) => i.id === itemId)
   if (!item) return
 
-  const db = readDb()
+  const db = await readDb()
   const student = db.students.find((s) => s.id === studentId)
   if (!student) return
   if (!student.purchasedItems?.includes(itemId)) return
@@ -91,25 +91,25 @@ export async function equipItem(studentId: string, itemId: string) {
   if (item.type === "accessory")  student.avatar.accessory = item.value
   if (item.type === "bgStyle")    student.avatar.bgStyle = item.value
 
-  writeDb(db)
+  await writeDb(db)
   revalidatePath("/")
   revalidatePath(`/elevi/${studentId}`)
   revalidatePath("/shop")
 }
 
 export async function removeAccessory(studentId: string) {
-  const db = readDb()
+  const db = await readDb()
   const student = db.students.find((s) => s.id === studentId)
   if (!student) return
   student.avatar.accessory = null
-  writeDb(db)
+  await writeDb(db)
   revalidatePath("/")
   revalidatePath(`/elevi/${studentId}`)
   revalidatePath("/shop")
 }
 
 export async function addStudent(name: string, gender: "boy" | "girl" = "boy") {
-  const db = readDb()
+  const db = await readDb()
   const trimmed = name.trim()
   if (!trimmed) return
   db.students.push({
@@ -121,16 +121,16 @@ export async function addStudent(name: string, gender: "boy" | "girl" = "boy") {
     purchasedItems: [],
     spentPoints: 0,
   })
-  writeDb(db)
+  await writeDb(db)
   revalidatePath("/")
   revalidatePath("/setari")
 }
 
 export async function deleteStudent(id: string) {
-  const db = readDb()
+  const db = await readDb()
   db.students = db.students.filter((s) => s.id !== id)
   db.events = db.events.filter((e) => e.studentId !== id)
-  writeDb(db)
+  await writeDb(db)
   revalidatePath("/")
   revalidatePath("/setari")
 }

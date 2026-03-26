@@ -1,31 +1,27 @@
+import { kv } from "@vercel/kv"
 import fs from "fs"
 import path from "path"
 import { Db } from "./types"
 
+const DB_KEY = "db"
 const DB_PATH = path.join(process.cwd(), "data", "db.json")
 
-const DEFAULT_DB: Db = {
-  students: [],
-  events: [],
-}
+const DEFAULT_DB: Db = { students: [], events: [] }
 
-export function readDb(): Db {
+export async function readDb(): Promise<Db> {
   try {
-    if (!fs.existsSync(DB_PATH)) {
-      writeDb(DEFAULT_DB)
-      return DEFAULT_DB
-    }
+    const data = await kv.get<Db>(DB_KEY)
+    if (data) return data
+    // Prima rulare: migrează automat din db.json
     const raw = fs.readFileSync(DB_PATH, "utf-8")
-    return JSON.parse(raw) as Db
+    const fromFile = JSON.parse(raw) as Db
+    await kv.set(DB_KEY, fromFile)
+    return fromFile
   } catch {
     return DEFAULT_DB
   }
 }
 
-export function writeDb(db: Db): void {
-  const dir = path.dirname(DB_PATH)
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true })
-  }
-  fs.writeFileSync(DB_PATH, JSON.stringify(db, null, 2), "utf-8")
+export async function writeDb(db: Db): Promise<void> {
+  await kv.set(DB_KEY, db)
 }

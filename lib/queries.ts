@@ -20,10 +20,10 @@ function getStartOfMonth(): Date {
   return new Date(now.getFullYear(), now.getMonth(), 1)
 }
 
-export function getLeaderboardByPeriod(
+export async function getLeaderboardByPeriod(
   period: "all" | "day" | "week" | "month"
-): StudentWithPoints[] {
-  const db = readDb()
+): Promise<StudentWithPoints[]> {
+  const db = await readDb()
 
   let since: Date | null = null
   if (period === "day") since = getStartOfDay()
@@ -62,8 +62,8 @@ export function getLeaderboardByPeriod(
   return sorted.map((s, i) => ({ ...s, rank: i + 1 }))
 }
 
-export function getStudentStats(studentId: string): StudentStats | null {
-  const db = readDb()
+export async function getStudentStats(studentId: string): Promise<StudentStats | null> {
+  const db = await readDb()
 
   const student = db.students.find((s) => s.id === studentId)
   if (!student) return null
@@ -87,6 +87,7 @@ export function getStudentStats(studentId: string): StudentStats | null {
   return { student, totalPoints, weeklyPoints, monthlyPoints, shopBalance, events: studentEvents }
 }
 
-export function getAllStudents() {
-  return readDb().students
+export async function getAllStudents() {
+  const db = await readDb()
+  return db.students
 }

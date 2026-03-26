@@ -1,7 +1,7 @@
 import { getAllStudents } from "@/lib/queries"
 import SetariClient from "./SetariClient"
 
-export default function SetariPage() {
-  const students = getAllStudents()
+export default async function SetariPage() {
+  const students = await getAllStudents()
   return <SetariClient students={students} />
 }

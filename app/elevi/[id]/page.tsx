@@ -10,7 +10,7 @@ export default async function StudentPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const stats = getStudentStats(id)
+  const stats = await getStudentStats(id)
   if (!stats) notFound()
 
   const { student, totalPoints, weeklyPoints, monthlyPoints, shopBalance, events } = stats

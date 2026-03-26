@@ -3,11 +3,11 @@ import StudentGrid from "@/components/StudentGrid"
 import Leaderboard from "@/components/Leaderboard"
 import { Star } from "lucide-react"
 
-export default function DashboardPage() {
-  const allTime = getLeaderboardByPeriod("all")
-  const daily   = getLeaderboardByPeriod("day")
-  const weekly  = getLeaderboardByPeriod("week")
-  const monthly = getLeaderboardByPeriod("month")
+export default async function DashboardPage() {
+  const allTime = await getLeaderboardByPeriod("all")
+  const daily   = await getLeaderboardByPeriod("day")
+  const weekly  = await getLeaderboardByPeriod("week")
+  const monthly = await getLeaderboardByPeriod("month")
 
   return (
     <div className="space-y-6">
