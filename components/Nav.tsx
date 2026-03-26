@@ -22,7 +22,7 @@ export default function Nav() {
             <div className="flex items-center justify-center w-9 h-9 bg-yellow-400 rounded-xl shadow-md rotate-3">
               <Star size={20} className="text-yellow-900 fill-yellow-900" />
             </div>
-            <div className="leading-tight">
+            <div className="hidden sm:block leading-tight">
               <span className="text-white font-extrabold text-lg tracking-tight block">
                 Clasa Steluțelor
               </span>
