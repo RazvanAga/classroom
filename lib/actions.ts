@@ -126,6 +126,23 @@ export async function addStudent(name: string, gender: "boy" | "girl" = "boy") {
   revalidatePath("/setari")
 }
 
+export async function addEventToAll(points: number, note?: string) {
+  const db = await readDb()
+  const timestamp = new Date().toISOString()
+  for (const student of db.students) {
+    db.events.push({
+      id: uuidv4(),
+      studentId: student.id,
+      points,
+      timestamp,
+      note,
+    })
+  }
+  await writeDb(db)
+  revalidatePath("/")
+  revalidatePath("/shop")
+}
+
 export async function deleteStudent(id: string) {
   const db = await readDb()
   db.students = db.students.filter((s) => s.id !== id)
