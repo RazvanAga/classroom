@@ -15,6 +15,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   hairColor: "💇 Culori de păr",
   accessory: "🎭 Accesorii",
   bgStyle:   "🖼️ Fundaluri",
+  physical:  "🆕 NOU",
 }
 
 export default function ShopClient({ students, shopItems }: Props) {
@@ -158,7 +159,7 @@ export default function ShopClient({ students, shopItems }: Props) {
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
                 {items.map((item) => {
-                  const owned    = isOwned(item)
+                  const owned    = item.type !== "physical" && isOwned(item)
                   const equipped = isEquipped(item)
                   const canAfford = student.shopBalance >= item.price
 
@@ -191,7 +192,21 @@ export default function ShopClient({ students, shopItems }: Props) {
                         {item.price}
                       </div>
 
-                      {equipped ? (
+                      {item.type === "physical" ? (
+                        canAfford ? (
+                          <button
+                            onClick={() => handleBuy(item)}
+                            disabled={isPending}
+                            className="text-xs bg-violet-600 hover:bg-violet-700 text-white font-bold px-3 py-1.5 rounded-xl transition-colors disabled:opacity-50 w-full"
+                          >
+                            Cumpără
+                          </button>
+                        ) : (
+                          <span className="flex items-center gap-1 text-xs text-slate-400">
+                            <Lock size={11} /> Insuficient
+                          </span>
+                        )
+                      ) : equipped ? (
                         <span className="flex items-center gap-1 text-xs text-violet-600 font-bold">
                           <Check size={12} /> Activ
                         </span>

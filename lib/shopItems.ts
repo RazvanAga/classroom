@@ -18,7 +18,14 @@ export const SHOP_ITEMS: ShopItem[] = [
   { id: "acc-star",    name: "Stea de aur",   emoji: "⭐", type: "accessory", value: "star",    price: 40 },
 
   // --- Fundaluri ---
-  { id: "bg-stars",    name: "Fundal stele",    emoji: "🌌", type: "bgStyle", value: "stars",   price: 20 },
-  { id: "bg-rainbow",  name: "Fundal curcubeu", emoji: "🌈", type: "bgStyle", value: "rainbow", price: 25 },
-  { id: "bg-gold",     name: "Fundal auriu",    emoji: "🌟", type: "bgStyle", value: "gold",    price: 40 },
+  { id: "bg-stars",    name: "Fundal stele",    emoji: "🌌", type: "bgStyle",  value: "stars",   price: 20 },
+  { id: "bg-rainbow",  name: "Fundal curcubeu", emoji: "🌈", type: "bgStyle",  value: "rainbow", price: 25 },
+  { id: "bg-gold",     name: "Fundal auriu",    emoji: "🌟", type: "bgStyle",  value: "gold",    price: 40 },
+
+  // --- NOU ---
+  { id: "phys-cordeluta", name: "Cordelută",  emoji: "🎀", type: "physical", value: "", price: 10 },
+  { id: "phys-masca",     name: "Mască",      emoji: "🎭", type: "physical", value: "", price: 20 },
+  { id: "phys-sapca",     name: "Șapcă",      emoji: "🧢", type: "physical", value: "", price: 30 },
+  { id: "phys-kendama",   name: "Kendama",    emoji: "🪀", type: "physical", value: "", price: 50 },
+  { id: "phys-telefon",   name: "Telefon",    emoji: "📱", type: "physical", value: "", price: 40 },
 ]

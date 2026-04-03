@@ -58,17 +58,19 @@ export async function purchaseItem(
   }
 
   student.spentPoints = (student.spentPoints ?? 0) + item.price
-  if (!student.purchasedItems) student.purchasedItems = []
-  if (!student.purchasedItems.includes(itemId)) {
-    student.purchasedItems.push(itemId)
-  }
 
-  if (!student.avatar) {
-    student.avatar = { hairColor: "blonde", skinTone: "light", accessory: null, bgStyle: "default" }
+  if (item.type !== "physical") {
+    if (!student.purchasedItems) student.purchasedItems = []
+    if (!student.purchasedItems.includes(itemId)) {
+      student.purchasedItems.push(itemId)
+    }
+    if (!student.avatar) {
+      student.avatar = { hairColor: "blonde", skinTone: "light", accessory: null, bgStyle: "default" }
+    }
+    if (item.type === "hairColor") student.avatar.hairColor = item.value
+    if (item.type === "accessory")  student.avatar.accessory = item.value
+    if (item.type === "bgStyle")    student.avatar.bgStyle = item.value
   }
-  if (item.type === "hairColor") student.avatar.hairColor = item.value
-  if (item.type === "accessory")  student.avatar.accessory = item.value
-  if (item.type === "bgStyle")    student.avatar.bgStyle = item.value
 
   await writeDb(db)
   revalidatePath("/")

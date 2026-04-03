@@ -27,7 +27,7 @@ export interface ShopItem {
   id: string
   name: string
   emoji: string
-  type: "hairColor" | "accessory" | "bgStyle"
+  type: "hairColor" | "accessory" | "bgStyle" | "physical"
   value: string
   price: number
 }
