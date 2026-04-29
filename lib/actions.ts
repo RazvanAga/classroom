@@ -59,7 +59,7 @@ export async function purchaseItem(
 
   student.spentPoints = (student.spentPoints ?? 0) + item.price
 
-  if (item.type !== "physical" && item.value !== "") {
+  if (item.value !== "") {
     if (!student.purchasedItems) student.purchasedItems = []
     if (!student.purchasedItems.includes(itemId)) {
       student.purchasedItems.push(itemId)

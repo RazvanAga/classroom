@@ -188,7 +188,7 @@ export default function ShopClient({ students, shopItems }: Props) {
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
                 {items.map((item) => {
-                  const owned    = item.type !== "physical" && isOwned(item)
+                  const owned    = isOwned(item)
                   const equipped = isEquipped(item)
                   const canAfford = student.shopBalance >= item.price
 
@@ -232,7 +232,7 @@ export default function ShopClient({ students, shopItems }: Props) {
                         {item.price}
                       </div>
 
-                      {item.type === "physical" ? (
+                      {false ? (
                         canAfford ? (
                           <button
                             onClick={() => handleBuy(item)}
