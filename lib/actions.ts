@@ -59,17 +59,20 @@ export async function purchaseItem(
 
   student.spentPoints = (student.spentPoints ?? 0) + item.price
 
-  if (item.type !== "physical") {
+  if (item.type !== "physical" && item.value !== "") {
     if (!student.purchasedItems) student.purchasedItems = []
     if (!student.purchasedItems.includes(itemId)) {
       student.purchasedItems.push(itemId)
     }
     if (!student.avatar) {
-      student.avatar = { hairColor: "blonde", skinTone: "light", accessory: null, bgStyle: "default" }
+      student.avatar = { hairColor: "blonde", skinTone: "light", accessory: null, bgStyle: "default", object: null, logo: null, pet: null }
     }
     if (item.type === "hairColor") student.avatar.hairColor = item.value
-    if (item.type === "accessory")  student.avatar.accessory = item.value
-    if (item.type === "bgStyle")    student.avatar.bgStyle = item.value
+    if (item.type === "accessory") student.avatar.accessory = item.value
+    if (item.type === "bgStyle")   student.avatar.bgStyle   = item.value
+    if (item.type === "kendama" && item.value) student.avatar.object = item.value
+    if (item.type === "logo")      student.avatar.logo      = item.value
+    if (item.type === "pet")       student.avatar.pet       = item.value
   }
 
   await writeDb(db)
@@ -90,8 +93,11 @@ export async function equipItem(studentId: string, itemId: string) {
   if (!student.purchasedItems?.includes(itemId)) return
 
   if (item.type === "hairColor") student.avatar.hairColor = item.value
-  if (item.type === "accessory")  student.avatar.accessory = item.value
-  if (item.type === "bgStyle")    student.avatar.bgStyle = item.value
+  if (item.type === "accessory") student.avatar.accessory = item.value
+  if (item.type === "bgStyle")   student.avatar.bgStyle   = item.value
+  if (item.type === "kendama")   student.avatar.object    = item.value
+  if (item.type === "logo")      student.avatar.logo      = item.value
+  if (item.type === "pet")       student.avatar.pet       = item.value
 
   await writeDb(db)
   revalidatePath("/")
@@ -119,7 +125,7 @@ export async function addStudent(name: string, gender: "boy" | "girl" = "boy") {
     name: trimmed,
     createdAt: new Date().toISOString(),
     gender,
-    avatar: { hairColor: "blonde", skinTone: "light", accessory: null, bgStyle: "default" },
+    avatar: { hairColor: "blonde", skinTone: "light", accessory: null, bgStyle: "default", object: null, logo: null, pet: null },
     purchasedItems: [],
     spentPoints: 0,
   })

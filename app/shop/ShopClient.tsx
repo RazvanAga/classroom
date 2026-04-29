@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useTransition } from "react"
-import { ShoppingBag, Star, Check, Lock, RefreshCw } from "lucide-react"
+import { ShoppingBag, Star, Check, Lock, RefreshCw, Eye } from "lucide-react"
+import Link from "next/link"
 import { StudentWithPoints, ShopItem } from "@/lib/types"
 import { purchaseItem, equipItem, removeAccessory } from "@/lib/actions"
 import Avatar from "@/components/Avatar"
@@ -11,11 +12,30 @@ interface Props {
   shopItems: ShopItem[]
 }
 
+const KENDAMA_CSS_FILTERS: Record<string, string> = {
+  "kendama-blue":   "hue-rotate(240deg) saturate(1.5)",
+  "kendama-pink":   "hue-rotate(300deg) saturate(1.5)",
+  "kendama-green":  "hue-rotate(120deg) saturate(1.5)",
+  "kendama-yellow": "saturate(0) sepia(1) saturate(5)",
+  "kendama-white":  "saturate(0) brightness(2.5) contrast(0.4)",
+  "kendama-black":  "saturate(0) brightness(0.2)",
+  "kendama-purple": "hue-rotate(270deg) saturate(2)",
+}
+
 const CATEGORY_LABELS: Record<string, string> = {
   hairColor: "💇 Culori de păr",
   accessory: "🎭 Accesorii",
   bgStyle:   "🖼️ Fundaluri",
-  physical:  "🆕 NOU",
+  logo:      "🎮 Logos jocuri",
+  pet:       "🐾 Animale de companie",
+  kendama:   "🎁 Obiecte",
+}
+
+const LOGO_IMAGES: Record<string, string> = {
+  "badge-fortnite":   "/Fortnite.png",
+  "badge-brawlstars": "/brawlstars.png",
+  "badge-roblox":     "/roblox.webp",
+  "badge-minecraft":  "/minecraft.svg",
 }
 
 export default function ShopClient({ students, shopItems }: Props) {
@@ -64,9 +84,12 @@ export default function ShopClient({ students, shopItems }: Props) {
 
   function isEquipped(item: ShopItem) {
     if (!student) return false
-    if (item.type === "hairColor") return student.avatar.hairColor === item.value
-    if (item.type === "accessory")  return student.avatar.accessory === item.value
-    if (item.type === "bgStyle")    return student.avatar.bgStyle === item.value
+    if (item.type === "hairColor") return student.avatar.hairColor        === item.value
+    if (item.type === "accessory") return student.avatar.accessory        === item.value
+    if (item.type === "bgStyle")   return student.avatar.bgStyle          === item.value
+    if (item.type === "kendama")   return (student.avatar.object  ?? null) === item.value
+    if (item.type === "logo")      return (student.avatar.logo    ?? null) === item.value
+    if (item.type === "pet")       return (student.avatar.pet     ?? null) === item.value
     return false
   }
 
@@ -80,6 +103,12 @@ export default function ShopClient({ students, shopItems }: Props) {
         <p className="text-purple-100 text-sm mt-1">
           Cumpără lucruri speciale cu stelele câștigate! ✦
         </p>
+        <Link
+          href="/dev"
+          className="inline-flex items-center gap-2 mt-3 bg-white/20 hover:bg-white/30 text-white text-sm font-bold px-4 py-2 rounded-xl transition-colors"
+        >
+          <Eye size={15} /> Vezi tot ce poți cumpăra
+        </Link>
       </div>
 
       {/* Student selector */}
@@ -183,7 +212,18 @@ export default function ShopClient({ students, shopItems }: Props) {
                         </span>
                       )}
 
-                      <span className="text-3xl">{item.emoji}</span>
+                      {item.type === "kendama" && item.value.startsWith("kendama-") ? (
+                        <img
+                          src="/kendama.png"
+                          alt={item.name}
+                          className="w-10 h-10 object-contain"
+                          style={{ filter: KENDAMA_CSS_FILTERS[item.value] }}
+                        />
+                      ) : item.type === "logo" ? (
+                        <img src={LOGO_IMAGES[item.value]} alt={item.name} className="w-10 h-10 object-contain"/>
+                      ) : (
+                        <span className="text-3xl">{item.emoji}</span>
+                      )}
                       <span className="text-xs font-bold text-slate-700 text-center leading-tight">
                         {item.name}
                       </span>

@@ -105,19 +105,34 @@ export default function StudentGrid({ students }: Props) {
           const pts = s.shopBalance
           const isPositive = pts > 0
           const isNegative = pts < 0
+          const bg = s.avatar?.bgStyle
+
+          const starsSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%231a1a4e'/%3E%3Ccircle cx='12' cy='14' r='1.5' fill='white' opacity='0.7'/%3E%3Ccircle cx='68' cy='18' r='1.5' fill='white' opacity='0.7'/%3E%3Ccircle cx='18' cy='62' r='1.5' fill='white' opacity='0.7'/%3E%3Ccircle cx='62' cy='66' r='1.5' fill='white' opacity='0.7'/%3E%3Ccircle cx='40' cy='8' r='1.5' fill='white' opacity='0.7'/%3E%3Ccircle cx='22' cy='38' r='1.5' fill='white' opacity='0.7'/%3E%3Ccircle cx='58' cy='40' r='1.5' fill='white' opacity='0.7'/%3E%3Ccircle cx='40' cy='72' r='1.5' fill='white' opacity='0.7'/%3E%3Ctext x='26' y='24' font-size='7' fill='%23FFD700' text-anchor='middle'%3E%E2%98%85%3C/text%3E%3Ctext x='54' y='28' font-size='7' fill='%23FFD700' text-anchor='middle'%3E%E2%98%85%3C/text%3E%3Ctext x='40' y='68' font-size='7' fill='%23FFD700' text-anchor='middle'%3E%E2%98%85%3C/text%3E%3Ctext x='14' y='50' font-size='7' fill='%23FFD700' text-anchor='middle'%3E%E2%98%85%3C/text%3E%3Ctext x='66' y='52' font-size='7' fill='%23FFD700' text-anchor='middle'%3E%E2%98%85%3C/text%3E%3C/svg%3E")`
+
+          const cardStyle: React.CSSProperties =
+            bg === "rainbow" ? { background: "linear-gradient(135deg, #FF6B6B 0%, #FFE66D 33%, #6BCB77 66%, #4D96FF 100%)" }
+            : bg === "gold"  ? { background: "radial-gradient(circle, #FFF176 0%, #CC8800 100%)" }
+            : bg === "stars" ? { backgroundImage: starsSvg, backgroundSize: "cover" }
+            : {}
+
+          const hasBg = bg && bg !== "default"
+          const isDark = bg === "stars"
 
           return (
             <button
               key={s.id}
               onClick={() => setSelected(s)}
+              style={cardStyle}
               className={`group relative flex flex-col items-center justify-center gap-1.5 border-2 rounded-2xl p-2 pt-3 cursor-pointer transition-all duration-150 hover:scale-105 hover:shadow-lg ${
-                s.gender === "girl"
-                  ? "bg-pink-50 border-pink-200 hover:border-pink-400"
-                  : "bg-sky-50 border-sky-200 hover:border-sky-400"
+                hasBg
+                  ? "border-white/30 hover:border-white/60"
+                  : s.gender === "girl"
+                    ? "bg-pink-50 border-pink-200 hover:border-pink-400"
+                    : "bg-sky-50 border-sky-200 hover:border-sky-400"
               }`}
             >
               {/* Rank badge */}
-              <span className="absolute top-1.5 left-2 text-[10px] font-bold text-slate-400">
+              <span className={`absolute top-1.5 left-2 text-[10px] font-bold ${isDark ? "text-white/60" : "text-slate-400"}`}>
                 #{s.rank}
               </span>
 
@@ -125,13 +140,15 @@ export default function StudentGrid({ students }: Props) {
               <Avatar gender={s.gender} avatar={s.avatar} size={56} uid={s.id} />
 
               {/* Name */}
-              <span className="text-xs font-bold text-center text-slate-700 leading-tight line-clamp-2 px-0.5">
+              <span className={`text-xs font-bold text-center leading-tight line-clamp-2 px-0.5 ${isDark ? "text-white" : "text-slate-700"}`}>
                 {s.name.split(" ")[0]}
               </span>
 
               {/* Points */}
               <div className={`flex items-center gap-0.5 text-xs font-extrabold ${
-                isPositive ? "text-emerald-600" : isNegative ? "text-rose-600" : "text-slate-400"
+                isDark
+                  ? isPositive ? "text-emerald-300" : isNegative ? "text-rose-300" : "text-white/40"
+                  : isPositive ? "text-emerald-600" : isNegative ? "text-rose-600" : "text-slate-400"
               }`}>
                 <Star size={10} className={isPositive ? "fill-amber-400 text-amber-400" : isNegative ? "text-rose-300" : "text-slate-200"} />
                 {isPositive ? `+${pts}` : pts}

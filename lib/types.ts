@@ -3,6 +3,9 @@ export interface AvatarConfig {
   skinTone: string
   accessory: string | null
   bgStyle: string
+  object?: string | null
+  logo?: string | null
+  pet?: string | null
 }
 
 export interface Student {
@@ -27,7 +30,7 @@ export interface ShopItem {
   id: string
   name: string
   emoji: string
-  type: "hairColor" | "accessory" | "bgStyle" | "physical"
+  type: "hairColor" | "accessory" | "bgStyle" | "kendama" | "logo" | "pet"
   value: string
   price: number
 }
