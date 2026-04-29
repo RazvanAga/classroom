@@ -28,7 +28,7 @@ interface Props {
 const KENDAMA_VARIANTS = new Set([
   "kendama-blue", "kendama-pink", "kendama-green", "kendama-yellow",
   "kendama-white", "kendama-black", "kendama-purple",
-  "phone", "books",
+  "phone", "books", "televizor", "manusi-box", "minge-fotbal",
 ])
 
 function KendamaFilter({ id, variant }: { id: string; variant: string }) {
@@ -267,6 +267,72 @@ export default function Avatar({ gender, avatar, size = 64, uid = "a" }: Props) 
           <ellipse cx="10" cy="69"   rx="2"   ry="2.5" fill="#FF69B4"/>
         </>
       )}
+      {currentPet === "panda" && (
+        <>
+          <ellipse cx="11" cy="73" rx="9" ry="5.5" fill="white"/>
+          <ellipse cx="5"  cy="72" rx="3.5" ry="4"  fill="#1a1a1a"/>
+          <ellipse cx="17" cy="72" rx="3.5" ry="4"  fill="#1a1a1a"/>
+          <circle cx="6"  cy="56" r="4" fill="#1a1a1a"/>
+          <circle cx="16" cy="56" r="4" fill="#1a1a1a"/>
+          <circle cx="11" cy="63" r="8" fill="white"/>
+          <ellipse cx="7.5"  cy="62" rx="3"   ry="2.5" fill="#1a1a1a"/>
+          <ellipse cx="14.5" cy="62" rx="3"   ry="2.5" fill="#1a1a1a"/>
+          <circle cx="7.5"  cy="62" r="1.3" fill="white"/>
+          <circle cx="14.5" cy="62" r="1.3" fill="white"/>
+          <circle cx="7.8"  cy="62" r="0.7" fill="#1a1a1a"/>
+          <circle cx="14.8" cy="62" r="0.7" fill="#1a1a1a"/>
+          <ellipse cx="11" cy="66" rx="1.5" ry="1" fill="#1a1a1a"/>
+        </>
+      )}
+      {currentPet === "koala" && (
+        <>
+          <ellipse cx="11" cy="73" rx="9" ry="5.5" fill="#9E9E9E"/>
+          <circle cx="5"  cy="56" r="5.5" fill="#9E9E9E"/>
+          <circle cx="17" cy="56" r="5.5" fill="#9E9E9E"/>
+          <circle cx="5"  cy="56" r="3.5" fill="#BDBDBD"/>
+          <circle cx="17" cy="56" r="3.5" fill="#BDBDBD"/>
+          <circle cx="11" cy="64" r="8" fill="#9E9E9E"/>
+          <ellipse cx="11" cy="67.5" rx="3.5" ry="2.5" fill="#424242"/>
+          <circle cx="7"   cy="62"   r="2"   fill="#1a1a1a"/>
+          <circle cx="15"  cy="62"   r="2"   fill="#1a1a1a"/>
+          <circle cx="7.5" cy="61.5" r="0.8" fill="white"/>
+          <circle cx="15.5" cy="61.5" r="0.8" fill="white"/>
+        </>
+      )}
+      {currentPet === "capybara" && (
+        <>
+          <rect x="2"  y="67" width="20" height="12" rx="4" fill="#C19A6B"/>
+          <ellipse cx="7"  cy="57" rx="3"  ry="2.5" fill="#C19A6B"/>
+          <ellipse cx="15" cy="57" rx="3"  ry="2.5" fill="#C19A6B"/>
+          <rect x="3"  y="58" width="18" height="13" rx="4" fill="#C19A6B"/>
+          <rect x="5"  y="65" width="14" height="7"  rx="3" fill="#A0785A"/>
+          <circle cx="9"   cy="68"   r="1.2" fill="#7A5C44"/>
+          <circle cx="13"  cy="68"   r="1.2" fill="#7A5C44"/>
+          <circle cx="7"   cy="62"   r="1.8" fill="#1a1a1a"/>
+          <circle cx="15"  cy="62"   r="1.8" fill="#1a1a1a"/>
+          <circle cx="7.4" cy="61.5" r="0.7" fill="white"/>
+          <circle cx="15.4" cy="61.5" r="0.7" fill="white"/>
+        </>
+      )}
+      {currentPet === "stitch" && (
+        <>
+          <ellipse cx="11" cy="73" rx="9" ry="5.5" fill="#4FC3F7"/>
+          <ellipse cx="5"  cy="55" rx="4" ry="6.5" fill="#4FC3F7" transform="rotate(-15 5 55)"/>
+          <ellipse cx="17" cy="55" rx="4" ry="6.5" fill="#4FC3F7" transform="rotate(15 17 55)"/>
+          <ellipse cx="5"  cy="55" rx="2" ry="4.5" fill="#81D4FA" opacity="0.6" transform="rotate(-15 5 55)"/>
+          <ellipse cx="17" cy="55" rx="2" ry="4.5" fill="#81D4FA" opacity="0.6" transform="rotate(15 17 55)"/>
+          <circle cx="11" cy="64" r="8" fill="#4FC3F7"/>
+          <circle cx="7.5"  cy="62" r="3"   fill="#1a237e"/>
+          <circle cx="14.5" cy="62" r="3"   fill="#1a237e"/>
+          <circle cx="8"    cy="61.5" r="1.2" fill="white"/>
+          <circle cx="15"   cy="61.5" r="1.2" fill="white"/>
+          <ellipse cx="11" cy="66.5" rx="1.5" ry="1" fill="#1565C0"/>
+          <path d="M 7,69 Q 11,73 15,69" stroke="#1565C0" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
+          <line x1="9"  y1="69.5" x2="9"  y2="71"   stroke="white" strokeWidth="1"/>
+          <line x1="11" y1="70"   x2="11" y2="71.5"  stroke="white" strokeWidth="1"/>
+          <line x1="13" y1="69.5" x2="13" y2="71"    stroke="white" strokeWidth="1"/>
+        </>
+      )}
       {currentPet === "bunny" && (
         <>
           <ellipse cx="7"  cy="57" rx="3"   ry="8"   fill="#f0f0f0"/>
@@ -282,6 +348,71 @@ export default function Avatar({ gender, avatar, size = 64, uid = "a" }: Props) 
           <ellipse cx="10" cy="66.5" rx="1" ry="0.7" fill="#FF69B4"/>
           <line x1="4" y1="66" x2="9"  y2="67" stroke="#ccc" strokeWidth="0.7"/>
           <line x1="11" y1="67" x2="16" y2="66" stroke="#ccc" strokeWidth="0.7"/>
+        </>
+      )}
+      {currentPet === "puisor" && (
+        <>
+          {/* Mot/creastă portocalie */}
+          <path d="M 7,56 L 6,51 L 10,55 Z" fill="#FF8C00"/>
+          <path d="M 10,55 L 10,50 L 13,55 Z" fill="#FF8C00"/>
+          <path d="M 13,56 L 14,51 L 16,56 Z" fill="#FF8C00"/>
+          {/* Corp */}
+          <ellipse cx="10" cy="73" rx="9" ry="6" fill="#FFD700"/>
+          {/* Aripi */}
+          <ellipse cx="2"  cy="70" rx="2.5" ry="5" fill="#FFC200" transform="rotate(15 2 70)"/>
+          <ellipse cx="19" cy="70" rx="2.5" ry="5" fill="#FFC200" transform="rotate(-15 19 70)"/>
+          {/* Cap */}
+          <circle cx="10" cy="63" r="7" fill="#FFD700"/>
+          {/* Ochi */}
+          <circle cx="7.5"  cy="62" r="2" fill="#1a1a1a"/>
+          <circle cx="12.5" cy="62" r="2" fill="#1a1a1a"/>
+          <circle cx="8"    cy="61.5" r="0.7" fill="white"/>
+          <circle cx="13"   cy="61.5" r="0.7" fill="white"/>
+          {/* Cioc */}
+          <path d="M 15,63.5 L 19,65 L 15,66" fill="#FF8C00"/>
+        </>
+      )}
+      {currentPet === "arici" && (
+        <>
+          {/* Țepi */}
+          <path d="M 2,67 L 0,59 L 5,66 Z" fill="#4E342E"/>
+          <path d="M 5,63 L 3,55 L 8,62 Z" fill="#4E342E"/>
+          <path d="M 9,60 L 8,52 L 12,61 Z" fill="#4E342E"/>
+          <path d="M 13,61 L 14,53 L 17,61 Z" fill="#4E342E"/>
+          <path d="M 17,64 L 19,56 L 21,64 Z" fill="#4E342E"/>
+          {/* Corp */}
+          <ellipse cx="10" cy="73" rx="9" ry="5.5" fill="#795548"/>
+          {/* Cap */}
+          <circle cx="10" cy="64" r="8" fill="#795548"/>
+          {/* Burtă deschisă */}
+          <ellipse cx="10" cy="68" rx="6" ry="4.5" fill="#D7CCC8"/>
+          {/* Bot */}
+          <ellipse cx="14" cy="64" rx="3" ry="2.5" fill="#A1887F"/>
+          <ellipse cx="15.5" cy="63.5" rx="1.2" ry="1" fill="#1a1a1a"/>
+          {/* Ochi */}
+          <circle cx="9"   cy="62" r="1.8" fill="#1a1a1a"/>
+          <circle cx="9.4" cy="61.5" r="0.7" fill="white"/>
+        </>
+      )}
+      {currentPet === "peste" && (
+        <>
+          {/* Coadă */}
+          <path d="M 3,65 L 7,59 L 7,71 Z" fill="#E64A19"/>
+          {/* Corp */}
+          <ellipse cx="14" cy="65" rx="9" ry="6" fill="#FF7043"/>
+          {/* Burtă */}
+          <ellipse cx="14" cy="67" rx="7" ry="4" fill="#FFCCBC"/>
+          {/* Înotătoare dorsală */}
+          <path d="M 10,59 Q 14,54 18,59 Z" fill="#E64A19"/>
+          {/* Înotătoare ventrală */}
+          <path d="M 12,71 L 11,75 L 16,71 Z" fill="#E64A19"/>
+          {/* Ochi */}
+          <circle cx="19"   cy="63" r="2.5" fill="white"/>
+          <circle cx="19.5" cy="63" r="1.5" fill="#1a1a1a"/>
+          <circle cx="20"   cy="62.5" r="0.5" fill="white"/>
+          {/* Solzi */}
+          <path d="M 12,62 Q 14,60 16,62" stroke="#BF360C" strokeWidth="0.8" fill="none"/>
+          <path d="M 10,65 Q 12,63 14,65" stroke="#BF360C" strokeWidth="0.8" fill="none"/>
         </>
       )}
 
@@ -330,7 +461,37 @@ export default function Avatar({ gender, avatar, size = 64, uid = "a" }: Props) 
           <circle cx="69" cy="76.5" r="1.5" fill="#333"/>
         </>
       )}
-      {isObject && currentObject !== "phone" && currentObject !== "books" && (
+      {isObject && currentObject === "televizor" && (
+        <>
+          {/* Ramă TV */}
+          <rect x="50" y="55" width="29" height="20" rx="2" fill="#212121"/>
+          {/* Ecran */}
+          <rect x="52" y="57" width="25" height="16" rx="1" fill="#1565C0"/>
+          {/* Conținut ecran */}
+          <rect x="53" y="58" width="10" height="14" fill="#42A5F5" opacity="0.35"/>
+          <rect x="64" y="58" width="12" height="14" fill="#66BB6A" opacity="0.35"/>
+          {/* Picior */}
+          <rect x="62" y="75" width="5" height="3" fill="#424242"/>
+          {/* Soclu */}
+          <rect x="57" y="78" width="15" height="2" rx="1" fill="#424242"/>
+        </>
+      )}
+      {isObject && currentObject === "manusi-box" && (
+        <>
+          {/* Mănușă stânga */}
+          <rect x="51" y="58" width="13" height="14" rx="6" fill="#E53935"/>
+          <ellipse cx="57" cy="58" rx="5" ry="3.5" fill="#EF5350"/>
+          <rect x="53" y="71" width="9"  height="5" rx="2" fill="#B71C1C"/>
+          {/* Mănușă dreapta (puțin mai jos) */}
+          <rect x="65" y="63" width="13" height="14" rx="6" fill="#E53935"/>
+          <ellipse cx="71" cy="63" rx="5" ry="3.5" fill="#EF5350"/>
+          <rect x="67" y="76" width="9"  height="5" rx="2" fill="#B71C1C"/>
+        </>
+      )}
+      {isObject && currentObject === "minge-fotbal" && (
+        <image href="/football.svg" x="54" y="52" width="26" height="26"/>
+      )}
+      {isObject && currentObject !== "phone" && currentObject !== "books" && currentObject !== "televizor" && currentObject !== "manusi-box" && currentObject !== "minge-fotbal" && (
         <>
           <defs>
             <KendamaFilter id={`kdf-${uid}`} variant={currentObject!}/>

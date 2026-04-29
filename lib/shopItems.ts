@@ -30,13 +30,23 @@ export const SHOP_ITEMS: ShopItem[] = [
   { id: "bg-gold",    name: "Fundal auriu",    emoji: "🌟", type: "bgStyle", value: "gold",    price: 40 },
 
   // --- Animale de companie ---
-  { id: "pet-cat",    name: "Pisică",  emoji: "🐱", type: "pet", value: "cat",    price: 30 },
-  { id: "pet-dog",    name: "Câine",   emoji: "🐶", type: "pet", value: "dog",    price: 30 },
-  { id: "pet-bunny",  name: "Iepure",  emoji: "🐰", type: "pet", value: "bunny",  price: 30 },
+  { id: "pet-cat",      name: "Pisică",   emoji: "🐱", type: "pet", value: "cat",      price: 30 },
+  { id: "pet-dog",      name: "Câine",    emoji: "🐶", type: "pet", value: "dog",      price: 30 },
+  { id: "pet-bunny",    name: "Iepure",   emoji: "🐰", type: "pet", value: "bunny",    price: 30 },
+  { id: "pet-panda",    name: "Panda",    emoji: "🐼", type: "pet", value: "panda",    price: 35 },
+  { id: "pet-koala",    name: "Koala",    emoji: "🐨", type: "pet", value: "koala",    price: 35 },
+  { id: "pet-capybara", name: "Capybara", emoji: "🐾", type: "pet", value: "capybara", price: 35 },
+  { id: "pet-stitch",   name: "Stitch",   emoji: "💙", type: "pet", value: "stitch",   price: 50 },
+  { id: "pet-puisor",   name: "Puișor",   emoji: "🐣", type: "pet", value: "puisor",   price: 30 },
+  { id: "pet-arici",    name: "Arici",    emoji: "🦔", type: "pet", value: "arici",    price: 35 },
+  { id: "pet-peste",    name: "Pește",    emoji: "🐟", type: "pet", value: "peste",    price: 30 },
 
   // --- Obiecte ---
   { id: "phys-telefon",   name: "Telefon",          emoji: "📱", type: "kendama", value: "phone",          price: 40 },
   { id: "phys-carti",     name: "Teanc cărți",      emoji: "📚", type: "kendama", value: "books",          price: 25 },
+  { id: "obj-televizor",  name: "Televizor",         emoji: "📺", type: "kendama", value: "televizor",      price: 35 },
+  { id: "obj-manusi-box", name: "Mănuși de box",     emoji: "🥊", type: "kendama", value: "manusi-box",     price: 40 },
+  { id: "obj-minge",      name: "Minge de fotbal",   emoji: "⚽", type: "kendama", value: "minge-fotbal",   price: 25 },
   { id: "kendama-blue",   name: "Kendama albastru", emoji: "🪀", type: "kendama", value: "kendama-blue",   price: 30 },
   { id: "kendama-pink",   name: "Kendama roz",      emoji: "🪀", type: "kendama", value: "kendama-pink",   price: 30 },
   { id: "kendama-green",  name: "Kendama verde",    emoji: "🪀", type: "kendama", value: "kendama-green",  price: 30 },
